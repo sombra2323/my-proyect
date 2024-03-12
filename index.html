@@ -1,0 +1,166 @@
+$contenidoPagina = @'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Establecer y Finalizar Sesión Remota en PowerShell</title>
+    <style>
+        body {
+            background-image: url('https://th.bing.com/th/id/OIP.dhHeFXx6kH_NJGp0Sxl7YgHaHa?w=574&h=574&rs=1&pid=ImgDetMain');
+            background-size: cover; /* Ajustar tamaño de la imagen */
+            font-family: Arial, sans-serif; /* Fuente */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #contenido {
+            margin-top: 100px;
+            z-index: 1; /* Colocar delante del fondo */
+            position: relative; /* Asegurar que se muestre por encima del fondo */
+        }
+        h1 {
+            font-size: 36px;
+            color: #000; /* Cambiar color de las letras */
+            overflow: hidden; /* Ocultar el contenido antes de la animación */
+            white-space: nowrap; /* Evitar el ajuste de línea */
+            animation: escribir 3s steps(40, end) forwards; /* Animación de escritura */
+        }
+        p, code {
+            color: #333; /* Color del texto */
+            font-size: 18px;
+            margin-bottom: 20px;
+            overflow: hidden; /* Ocultar el contenido antes de la animación */
+            white-space: nowrap; /* Evitar el ajuste de línea */
+            animation: escribir 3s steps(40, end) forwards; /* Animación de escritura */
+        }
+        code {
+            background-color: #f8f8f8;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+        .imagenes {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .imagenes img {
+            margin: 0 10px;
+            animation: aparecer 1s ease-in-out infinite alternate;
+            max-width: 200px; /* Ajustar el ancho máximo de la imagen */
+            height: auto; /* Altura ajustada automáticamente */
+        }
+        .texto-simulado {
+            color: #333;
+            font-size: 18px;
+            margin-top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: escribir 3s steps(40, end) forwards;
+            cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el texto */
+            text-decoration: underline; /* Subraya el texto simulado */
+        }
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes escribir {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        #volumen {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            width: 30px; /* Ancho del icono */
+            height: 30px; /* Altura del icono */
+        }
+    </style>
+</head>
+<body>
+    <div id="contenido">
+        <h1><span style="color: black;">Establecer y Finalizar Sesión Remota en PowerShell</span></h1>
+        <p>Para establecer una sesión remota en PowerShell, puedes usar el siguiente código:</p>
+        <code>$session = New-PSSession -ComputerName NombreDelEquipo -Credential (Get-Credential)</code>
+        <p>Este código se utiliza para conectarse a un equipo remoto y ejecutar comandos de PowerShell en él.</p>
+        <p>Para finalizar la sesión remota, puedes usar el siguiente código:</p>
+        <code>Remove-PSSession $session</code>
+        <p>Este código cierra la sesión remota previamente establecida.</p>
+        <div class="imagenes">
+            <img src="C:\Users\fricb\Pictures\Acer\maxresdefault.jpg" alt="Descripción de la imagen 1">
+            <img src="C:\Users\fricb\Pictures\Acer\mcdonalds-happy-meal.jpg" alt="Descripción de la imagen 2">
+            <img src="C:\Users\fricb\Pictures\Acer\OIP (1).jpg" alt="Descripción de la imagen 3">
+        </div>
+    </div>
+
+    <img id="volumen" src="https://cdn-icons-png.flaticon.com/512/483/483365.png" alt="Icono de volumen" onclick="toggleAudio()">
+
+    <audio id="audio" src="C:\Users\fricb\Downloads\smooth-684-cm-54202.mp3"></audio>
+
+    <script>
+        var audio = document.getElementById("audio");
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function mostrarPrompt() {
+            var respuesta = prompt('¿Todo está en orden? Nos encantaría conocer tu opinión (si/no)');
+            if (respuesta !== null) {
+                if (respuesta.toLowerCase() === 'si') {
+                    alert('¡Perfecto! Puedes continuar con tu sesión.');
+                } else if (respuesta.toLowerCase() === 'no') {
+                    alert('Nos encantaría conocer tu opinión. \nVisita el siguiente enlace: https://support.github.com/');
+                    window.open('https://support.github.com/'); // Abrir el enlace en una nueva ventana si la respuesta es "no"
+                } else {
+                    alert('Por favor, responde con "si" o "no".');
+                    mostrarPrompt(); // Volver a mostrar el prompt si la respuesta no es válida
+                }
+            }
+        }
+
+        // Capturar el evento de teclado para Ctrl + R
+        window.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'r') {
+                mostrarPrompt();
+                e.preventDefault(); // Prevenir el comportamiento predeterminado de recargar la página
+            }
+        });
+
+        // Función para mostrar alerta y redirigir antes de copiar el texto
+        function mostrarAlertaCopiarTexto() {
+            // Mostrar alerta con mensaje y opción para visitar el enlace
+            var respuesta = confirm('Para copiar el texto, primero visita este enlace:\n\nhttps://github.com/sombra2323/session-fisica-y-digital-\n\n¿Deseas visitar el enlace ahora?');
+            if (respuesta) {
+                // Redirigir al enlace
+                window.open('https://github.com/sombra2323/session-fisica-y-digital-', '_blank');
+                // Permitir la copia después de visitar el enlace
+                document.removeEventListener('copy', mostrarAlertaCopiarTexto);
+                document.execCommand('copy');
+            }
+        }
+
+        // Capturar el evento de copiar
+        document.addEventListener('copy', mostrarAlertaCopiarTexto);
+
+        // Función para reiniciar la página
+        function reiniciarPagina() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
+'@
+
+$contenidoPagina | Out-File -FilePath "pagina.html" -Encoding UTF8
+Invoke-Item "pagina.html"
